@@ -1,4 +1,4 @@
-﻿module.exports.commonUtils = {
+﻿module.exports.utils = {
 
     //Function for Rest API service
     httpRequest: function ( options, res )

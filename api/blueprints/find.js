@@ -1,7 +1,7 @@
 /**
  * Module dependencies
  */
-var util = require('util'),
+const util = require('util'),
   actionUtil = require('../../node_modules/sails/lib/hooks/blueprints/actionUtil');
 
 /**
@@ -25,8 +25,8 @@ var util = require('util'),
 module.exports = function findRecords(req, res) {
 
     // Look up the model
-    var Model = actionUtil.parseModel(req);
-    var fields = req.param('select') ? req.param('select').replace(/ /g, '').split(',') : [];
+    let Model = actionUtil.parseModel(req),
+        fields = req.param('select') ? req.param('select').replace(/ /g, '').split(',') : [];
   
     // If an `id` param was specified, use the findOne blueprint action
     // to grab the particular instance with its primary key === the value
@@ -37,7 +37,7 @@ module.exports = function findRecords(req, res) {
     }
 
     // Lookup for records that match the specified criteria
-    var query = Model.find()
+    let query = Model.find()
       .where(actionUtil.parseCriteria(req))
       .limit(actionUtil.parseLimit(req))
       .skip(actionUtil.parseSkip(req))
@@ -65,7 +65,7 @@ module.exports = function findRecords(req, res) {
 
         // get pagination info and wrap results in struct
 
-        var metaInfo,
+        let metaInfo,
           criteria = actionUtil.parseCriteria(req),
           skip = actionUtil.parseSkip(req),
           limit = actionUtil.parseLimit(req);
@@ -81,7 +81,7 @@ module.exports = function findRecords(req, res) {
                   total: total,
                   criteria: criteria
               };
-              var records = fields.length > 0 ? _.map(matchingRecords, _.partial(_.pick, _, fields)) : matchingRecords;
+              let records = fields.length > 0 ? _.map(matchingRecords, _.partial(_.pick, _, fields)) : matchingRecords;
               //Changed items to ViewModels as We are using ViewModels in our client side code
               res.ok({ info: metaInfo, ViewModel: records, Success: true });
 

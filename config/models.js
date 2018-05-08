@@ -35,7 +35,7 @@ module.exports.models = {
   *                                                                          *
   ***************************************************************************/
 
-  // schema: true,
+   schema: true,
 
 
   /***************************************************************************
@@ -67,11 +67,18 @@ module.exports.models = {
   * > https://sailsjs.com/docs/concepts/orm/model-settings#?attributes       *
   *                                                                          *
   ***************************************************************************/
-
+  //https://sailsjs.com/documentation/concepts/models-and-orm/attributes
   attributes: {
-    createdAt: { type: 'number', autoCreatedAt: true, },
-    updatedAt: { type: 'number', autoUpdatedAt: true, },
-    id: { type: 'number', autoIncrement: true, },
+    updatedAt: false,
+    createdAt : false,
+    id: { type: 'string', columnName: '_id' },
+    dateCreated: { type: 'number', defaultsTo: Date.now()},
+    createdBy : {model :"user"},
+    dateModified: { type: 'number', defaultsTo: Date.now()},
+    modifiedBy : {model :"user"},
+    companyId: { model: 'company'},
+    json: { type: 'json', defaultsTo: {}},
+    status: { type: 'boolean', defaultsTo: true }
     //--------------------------------------------------------------------------
     //  /\   Using MongoDB?
     //  ||   Replace `id` above with this instead:

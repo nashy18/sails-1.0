@@ -1,6 +1,6 @@
 ﻿module.exports.enums = {
 
-    Action : {
+    action : {
         POST : "POST",
         PUT : "PUT",
         GET : "GET",

@@ -14,8 +14,6 @@
  */
 
 module.exports.datastores = {
-
-
   /***************************************************************************
   *                                                                          *
   * Your app's default datastore.                                            *
@@ -33,7 +31,6 @@ module.exports.datastores = {
   ***************************************************************************/
 
   default: {
-
     /***************************************************************************
     *                                                                          *
     * Want to use a different database during development?                     *
@@ -50,8 +47,26 @@ module.exports.datastores = {
     ***************************************************************************/
     // adapter: 'sails-mysql',
     // url: 'mysql://user:password@host:port/database',
-
+    /*
+    ssl: true,
+    adapter: 'sails-mongo',
+    url: "mongodb://nashy18:Power%401234@cluster0-shard-00-00-ehvmo.mongodb.net:27017,cluster0-shard-00-01-ehvmo.mongodb.net:27017,cluster0-shard-00-02-ehvmo.mongodb.net:27017/food-security?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin"
+    */
+    adapter: 'sails-mongo',
+    host: '10.30.30.35',
+    port: 27017,
+    // user: 'username',
+    // password: 'password',
+    database: 'dewdrops_cmd'
   },
 
+  userDb: {
+    adapter: 'sails-mongo',
+    host: '10.30.30.35',
+    port: 27017,
+    // user: 'username',
+    // password: 'password',
+    database: 'dewdrops_tms'
+  }
 
 };
