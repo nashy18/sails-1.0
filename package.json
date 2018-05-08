@@ -1,8 +1,8 @@
 {
-  "name": "mypp",
+  "name": "smart-food-safe-api",
   "private": true,
-  "version": "0.0.0",
-  "description": "a Sails application",
+  "version": "1.0.0",
+  "description": "A Sails application",
   "keywords": [],
   "dependencies": {
     "sails": "^1.0.2",
