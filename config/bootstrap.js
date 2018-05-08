@@ -8,9 +8,15 @@
  * For more information on bootstrapping your app, check out:
  * https://sailsjs.com/config/bootstrap
  */
-
+var uuid = require('uuid/v4');
 module.exports.bootstrap = (done)=> {
 
+  sails.moment = require('moment');
+  sails.uuid = uuid;
+  sails._ = require("underscore");
+  sails._string = require("underscore.string");
+  sails.enums = require( '../api/common/Enums' ).enums;
+  sails.commonUtils = require( '../api/common/Utils' ).commonUtils;    
   // By convention, this is a good place to set up fake data during development.
   //
   // For example:

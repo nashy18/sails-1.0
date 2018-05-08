@@ -1,0 +1,25 @@
+SELECT 
+B_L.id,
+B_L.usbn_location AS AccountingID,
+B_L.location_name AS Customer_Name,
+B_L.location_street,
+B_L.location_city,
+B_L.location_contact,
+B_L.location_contact_title,
+B_L.location_cell_ph,
+B_L.location_email,
+B_L.location_country,
+B_L.location_fax,
+B_L.location_ph AS location_phone,
+B_L.location_state,
+B_L.location_zip,
+B_L.Notes,
+B_C.id AS ParentID,
+B_C.usbn_customer AS Parent_AccountingID
+FROM
+BOSS_Location  B_L 
+JOIN BOSS_Customer B_C
+
+ ON B_C.id = B_L.customer_id
+WHERE
+B_L.customer_id = '<%= CustomerID%>'

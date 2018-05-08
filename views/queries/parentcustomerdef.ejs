@@ -1,0 +1,18 @@
+SELECT 
+    id,
+    usbn_customer as AccountingID,
+    Customer_Name,
+    Contact_Name,
+    Contact_Title,
+    Street,
+    City,
+    Zip,
+    State,
+    OfficePhone,
+    CellPhone,
+    Email,
+    Fax,
+    Notes,
+    Date_Created 
+FROM BOSS_Customer  
+WHERE id='<%= CustomerID%>'

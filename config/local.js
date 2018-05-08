@@ -12,5 +12,11 @@ module.exports = {
 
   // Any configuration settings may be overridden below, whether it's built-in Sails
   // options or custom configuration specifically for your app (e.g. Stripe, Mailgun, etc.)
+  //  ssl: {
+  //    //ca: require('fs').readFileSync(__dirname + './ssl/my_apps_ssl_gd_bundle.crt'),
+  //    key: require('fs').readFileSync(__dirname + '/ssl/private.key'),
+  //    cert: require('fs').readFileSync(__dirname + '/ssl/certificate.crt')
+  //  },
+
 
 };
