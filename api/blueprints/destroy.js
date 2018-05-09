@@ -8,6 +8,19 @@ const util = require('util'),
  * Destroy one Record
  */
 
-module.exports = function destroyOneRecord(req, res) {
-    res.send({"message":"delete"});
+const destroyOneRecord = async (req, res)=> {
+  try {
+    const modelInstance = actionUtil.parseModel(req);
+    //if(_.isEmpty(modelInstance)) return res.status(404).serverError({message : "Model not defined", success:false});
+    
+    const modelName = req.options.model,
+          deletedUser = await modelInstance.destroy(req.params)
+                              .fetch();
+
+    return res.ok({message:"A " + modelName + " data deleted successfully", data: deletedUser, success:true});
+  } catch (error) {
+    return res.serverError({message : error.message, success:false});
+  }
 };
+
+module.exports = destroyOneRecord;
