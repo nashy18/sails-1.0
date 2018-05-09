@@ -5,6 +5,7 @@ const util = require('util'),
   actionUtil = require('../../node_modules/sails/lib/hooks/blueprints/actionUtil');
 
 /**
+ * https://sailsjs.com/documentation/concepts/models-and-orm/query-language
  * Find Records
  *
  *  get   /:modelIdentity
@@ -82,8 +83,8 @@ module.exports = function findRecords(req, res) {
                   criteria: criteria
               };
               let records = fields.length > 0 ? _.map(matchingRecords, _.partial(_.pick, _, fields)) : matchingRecords;
-              //Changed items to ViewModels as We are using ViewModels in our client side code
-              res.ok({ info: metaInfo, ViewModel: records, Success: true });
+              //Changed items to viewModels as We are using viewModels in our client side code
+              res.ok({ info: metaInfo, viewModels: records, success: true });
 
           });
     });
