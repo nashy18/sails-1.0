@@ -14,8 +14,8 @@ const createRecord= async (req, res)=> {
       //if(_.isEmpty(modelInstance)) return res.status(404).serverError({message : "Model not defined", success:false});
       
       const modelName = req.options.model,
-            createdUser = await modelInstance.create(req.body).fetch();
-      return res.ok({message:"A new " + modelName + " data created successfully", data: createdUser, success:true});
+            createdData = await modelInstance.create(req.body).fetch();
+      return res.ok({message:"A new " + modelName + " data created successfully", data: createdData, success:true});
     } catch (error) {
       return res.serverError({message : error.message, success:false});
     }

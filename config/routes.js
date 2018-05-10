@@ -43,6 +43,12 @@ module.exports.routes = {
     fn: (req, res) => {
       return require('../api/blueprints/paginate.js')(req, res);
     }
-  }
+  },
 
+  'POST /:model/search': {
+    skipAssets: true,
+    fn: (req, res) => {
+      return require('../api/blueprints/find.js')(req, res);
+    }
+  }
 };

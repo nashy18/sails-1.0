@@ -2,90 +2,38 @@
  * Module dependencies
  */
 const util = require('util'),
-  actionUtil = require('../../node_modules/sails/lib/hooks/blueprints/actionUtil');
+    actionUtil = require('../../node_modules/sails/lib/hooks/blueprints/actionUtil');
+
 
 /**
- * https://sailsjs.com/documentation/concepts/models-and-orm/query-language
- * Find Records
- *
- *  get   /:modelIdentity
- *   *    /:modelIdentity/find
- *
- * An API call to find and return model instances from the data adapter
- * using the specified criteria.  If an id was specified, just the instance
- * with that unique id will be returned.
- *
- * Optional:
- * @param {Object} where       - the find criteria (passed directly to the ORM)
- * @param {Integer} limit      - the maximum number of records to send back (useful for pagination)
- * @param {Integer} skip       - the number of records to skip (useful for pagination)
- * @param {String} sort        - the order of returned records, e.g. `name ASC` or `age DESC`
- * @param {String} callback - default jsonp callback param (i.e. the name of the js function returned)
+ * Find all Records based on search parameters
+ * Get ALL
+ * Search by Parameters
  */
 
-module.exports = function findRecords(req, res) {
-
-    // Look up the model
-    let Model = actionUtil.parseModel(req),
-        fields = req.param('select') ? req.param('select').replace(/ /g, '').split(',') : [];
-  
-    // If an `id` param was specified, use the findOne blueprint action
-    // to grab the particular instance with its primary key === the value
-    // of the `id` param.   (mainly here for compatibility for 0.9, where
-    // there was no separate `findOne` action)
-    if (actionUtil.parsePk(req)) {
-        return require('./findOne')(req, res);
-    }
-
-    // Lookup for records that match the specified criteria
-    let query = Model.find()
-      .where(actionUtil.parseCriteria(req))
-      .limit(actionUtil.parseLimit(req))
-      .skip(actionUtil.parseSkip(req))
-      .sort(actionUtil.parseSort(req));
-
-
-
-
-    // TODO: .populateEach(req.options);
-    query = actionUtil.populateModel(query, req);
-    query = actionUtil.populateModel(query, req);
-    query.exec(function found(err, matchingRecords) {
-        if (err) return res.serverError(err);
-
-        // Only `.watch()` for new instances of the model if
-        // `autoWatch` is enabled.
-        if (req._sails.hooks.pubsub && req.isSocket) {
-            Model.subscribe(req, matchingRecords);
-            if (req.options.autoWatch) { Model.watch(req); }
-            // Also subscribe to instances of all associated models
-            _.each(matchingRecords, function (record) {
-                actionUtil.subscribeDeep(req, record);
-            });
+const findRecords = async (req, res) => {
+    try {
+        let modelInstance, modelName;
+        //when call comes from search api request
+        if (req.params.model) {
+            modelInstance = sails.models[req.params.model];
+            modelName = req.params.model;
         }
+        //when call comes from get all api request
+        else{
+            modelInstance = actionUtil.parseModel(req);
+            modelName = req.options.model;
+        }
+        const requestData = (req.body || req.params || {}),
+            getRecords = await modelInstance.find(requestData);
 
-        // get pagination info and wrap results in struct
+        if (_.isEmpty(getRecords)) return res.ok({ message: modelName + "  records not found", data: null, success: false });
 
-        let metaInfo,
-          criteria = actionUtil.parseCriteria(req),
-          skip = actionUtil.parseSkip(req),
-          limit = actionUtil.parseLimit(req);
+        return res.ok({ message: modelName + " records retrieved successfully", data: getRecords, success: true });
 
-        Model.count(criteria)
-          .exec(function (err, total) {
-              if (err) return res.serverError(err);
-
-              metaInfo = {
-                  start: skip,
-                  end: skip + limit,
-                  limit: limit,
-                  total: total,
-                  criteria: criteria
-              };
-              let records = fields.length > 0 ? _.map(matchingRecords, _.partial(_.pick, _, fields)) : matchingRecords;
-              //Changed items to viewModels as We are using viewModels in our client side code
-              res.ok({ info: metaInfo, viewModels: records, success: true });
-
-          });
-    });
+    } catch (error) {
+        return res.serverError({ message: error.message, success: false });
+    }
 };
+
+module.exports = findRecords;
