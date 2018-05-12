@@ -76,7 +76,7 @@ module.exports.models = {
     createdBy : {model :"user"},
     dateModified: { type: 'number', defaultsTo: Date.now()},
     modifiedBy : {model :"user"},
-    companyId: { model: 'company'},
+    companyId: { model: 'company',required:true},
     json: { type: 'json', defaultsTo: {}},
     status: { type: 'boolean', defaultsTo: true }
     //--------------------------------------------------------------------------

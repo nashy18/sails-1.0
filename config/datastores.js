@@ -56,7 +56,7 @@ module.exports.datastores = {
   userDb: {
     ssl: true,
     adapter: 'sails-mongo',
-    url: "mongodb://nashy18:Power%401234@cluster0-shard-00-00-ehvmo.mongodb.net:27017,cluster0-shard-00-01-ehvmo.mongodb.net:27017,cluster0-shard-00-02-ehvmo.mongodb.net:27017/food-security?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin"
+    url: "mongodb://nashy18:Power%401234@cluster0-shard-00-00-ehvmo.mongodb.net:27017,cluster0-shard-00-01-ehvmo.mongodb.net:27017,cluster0-shard-00-02-ehvmo.mongodb.net:27017/smartFoodSafe?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin"
   }
 
 };

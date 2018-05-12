@@ -7,7 +7,7 @@
 
 module.exports = {
   //https://sailsjs.com/documentation/reference/configuration/sails-config-datastores  
-  datastore: 'userDb',
+  //datastore: 'userDb',
 
   //https://sailsjs.com/documentation/concepts/models-and-orm/attributes
   //https://sailsjs.com/documentation/concepts/models-and-orm/validations
@@ -36,7 +36,7 @@ module.exports = {
       required: true
     },
     roleId: {
-      type: 'string',
+      model: 'role',
       required: true
     },
   }
