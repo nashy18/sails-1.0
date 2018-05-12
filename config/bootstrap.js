@@ -10,8 +10,8 @@
  */
 const uuid = require('uuid/v4'),
       moment = require('moment'),
-      enums = require( '../api/common/enums' ).enums,
-      utils = require( '../api/common/utils' ).utils;
+      enums = require( '../api/common/Enums' ).enums,
+      utils = require( '../api/common/Utils' ).utils;
 //Dependency injection for common modules
 module.exports.bootstrap = (done)=> {
   
