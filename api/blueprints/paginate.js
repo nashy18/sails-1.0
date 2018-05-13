@@ -6,7 +6,7 @@ module.exports = async (req, res) => {
   try {
     const modelName = req.params.model,
       model = sails.models[req.params.model];
-    if (_.isEmpty(model)) return res.status(404).serverError({ message: "Model not defined", success: false });
+    if (_.isEmpty(model)) return res.status(404).serverError({ message: modelName + " model not defined", success: false });
 
     const pageNo = (req.body.hasOwnProperty("pageNo") ? req.body.pageNo : 1),
           perPageRecords = (req.body.hasOwnProperty("perPageRecords")) ? req.body.perPageRecords : 10;

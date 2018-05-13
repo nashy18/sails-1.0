@@ -18,6 +18,7 @@ const findRecords = async (req, res) => {
         if (req.params.model) {
             modelInstance = sails.models[req.params.model];
             modelName = req.params.model;
+            if (_.isEmpty(modelInstance)) return res.status(404).serverError({ message: modelName + " model not defined", success: false });
         }
         //when call comes from get all api request
         else{
