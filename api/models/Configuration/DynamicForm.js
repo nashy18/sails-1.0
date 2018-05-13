@@ -8,11 +8,6 @@
 module.exports = {
 
   attributes: {
-    name: {
-      type: 'string',
-      unique: true,
-      required: true
-    },
     labels:{
       type:"json",
       required: true

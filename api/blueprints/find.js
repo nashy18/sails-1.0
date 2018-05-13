@@ -13,6 +13,7 @@ const util = require('util'),
 
 const findRecords = async (req, res) => {
     try {
+        
         let modelInstance, modelName;
         //when call comes from search api request
         if (req.params.model) {
@@ -25,8 +26,15 @@ const findRecords = async (req, res) => {
             modelInstance = actionUtil.parseModel(req);
             modelName = req.options.model;
         }
-        const requestData = (req.body || req.params || {}),
-            getRecords = await modelInstance.find(requestData);
+        const requestData = (req.body || req.params || {});
+        let methodChain = "modelInstance.find(requestData)";
+        modelInstance.associations.forEach((item, index)=>{
+            if(index < modelInstance.associations.length){
+                methodChain = methodChain + ".";
+            }
+            methodChain  = methodChain + "populate('" + item.alias + "')";            
+        });
+        const getRecords = await (eval(methodChain));
 
         if (_.isEmpty(getRecords)) return res.ok({ message: modelName + "  records not found", data: null, success: false });
 
