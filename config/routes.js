@@ -57,24 +57,8 @@ module.exports.routes = {
     fn: (req, res)=>{
       try {
         const request = sails.request,
-          url = "http://18.191.2.115:3000/config";
+          url = sails.custom_config.endpointURL + "config";
         request.get({ url: url, json: true }, (error, response, body) => {
-          res.send(body);
-        });
-
-      } catch (error) {
-        return res.send(error);
-      }
-    }
-  },
-
-  'POST /user/login': {
-    skipAssets: true,
-    fn: (req, res)=>{
-      try {
-        const request = sails.request,
-          url = "http://18.191.2.115:3000/user/login";
-        request.post({body: {username: "admin", password: "admin"}, url: url, json: true }, (error, response, body) => {
           res.send(body);
         });
 

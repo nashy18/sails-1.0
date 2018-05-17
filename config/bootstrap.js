@@ -26,6 +26,11 @@ module.exports.bootstrap = (done)=> {
   sails.enums = enums;
   sails.utils = utils;    
 
+  //configuration
+  sails.custom_config = {
+    "endpointURL" : "http://18.191.2.115:3000/"
+  } 
+
   return done();
 
 };
