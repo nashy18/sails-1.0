@@ -10,6 +10,7 @@
  */
 const uuid = require('uuid/v4'),
       moment = require('moment'),
+      request = require('request'),
       enums = require( '../api/common/Enums' ).enums,
       utils = require( '../api/common/Utils' ).utils;
 //Dependency injection for common modules
@@ -19,6 +20,7 @@ module.exports.bootstrap = (done)=> {
   //3rd party modules
   sails.moment = moment;
   sails.uuid = uuid;
+  sails.request = request;
 
   //custom modules
   sails.enums = enums;

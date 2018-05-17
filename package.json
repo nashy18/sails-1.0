@@ -12,13 +12,14 @@
     "grunt": "1.0.1",
     "jsonwebtoken": "^8.2.1",
     "moment": "^2.22.1",
+    "request": "^2.86.0",
     "sails": "^1.0.2",
     "sails-hook-custom-blueprints": "^1.0.0",
     "sails-hook-grunt": "^3.0.2",
     "sails-hook-orm": "^2.0.0-16",
     "sails-hook-sockets": "^1.4.0",
-    "uuid": "^3.2.1",
-    "sails-mongo": "^1.0.1"
+    "sails-mongo": "^1.0.1",
+    "uuid": "^3.2.1"
   },
   "devDependencies": {
     "@sailshq/eslint": "^4.19.3"
@@ -32,9 +33,9 @@
   "main": "app.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/anonymous node/sails user/mypp.git"
+    "url": "git://github.com/nashy18/sails-1.0.git"
   },
-  "author": "anonymous node/sails user",
+  "author": "nashy18",
   "license": "",
   "engines": {
     "node": ">=8.11"
