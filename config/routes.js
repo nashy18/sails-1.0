@@ -52,6 +52,23 @@ module.exports.routes = {
     }
   },
 
+  'GET /:model/getModelAttributes':{
+    skipAssets: true,
+    fn: (req, res) => {
+      try {
+        const modelName = req.params.model;
+        if(sails.models[modelName]){
+          return res.send({"data" : Object.keys(sails.models[modelName].attributes)});
+        }
+        else{
+          return res.send ({"data" : [], "message" : "No models found"});
+        }   
+      } catch (error) {
+        res.send(error);
+      }   
+    }
+  },
+
   'GET /config': {
     skipAssets: true,
     fn: (req, res)=>{
