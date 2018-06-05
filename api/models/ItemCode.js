@@ -20,7 +20,7 @@ module.exports = {
     },
     brands: {
       collection: 'brand',
-      via: 'item'
+      via: 'itemCodeId'
     }
 
   },

@@ -14,15 +14,11 @@ module.exports = {
       unique: true,
       required: true
     },
-    plantId:{
-      model:"plant",
-      required: true
-    },
     product: {
       collection: 'product',
       via: 'brand'
     },
-    item: {
+    itemCodeId: {
       model: 'itemcode'
     }  
   },

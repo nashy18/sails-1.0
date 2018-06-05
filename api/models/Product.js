@@ -58,7 +58,7 @@ module.exports = {
       required: true
     },
     brandId:{
-      model:"plant",
+      model:"brand",
       required: true
     },
     brand: {
