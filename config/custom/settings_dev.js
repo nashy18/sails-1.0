@@ -51,6 +51,7 @@
     },
     App: {
         DocumentProvider: 'Minio',
-        CompanyCode : "VM"
+        CompanyCode : "SmartFoodSafe",
+        APIEndPoint :"http://18.191.2.115:3000"
     }
 };

@@ -28,8 +28,8 @@ module.exports = {
 	login: (req,res)=>{
         try {
             const userController = new UserController(req, res);
-            const reqData = {username: "admin", password: "admin"};
-            return userController.authenticate(reqData);    
+            const reqData = {username: "avinash", password: "password"};
+            return userController.authenticate(req.body || reqData);    
           } catch (error) {
             return res.send(error);
           }
