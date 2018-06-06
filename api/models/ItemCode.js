@@ -18,7 +18,7 @@ module.exports = {
       model:"brand",
       required: true
     },
-    brands: {
+    brand: {
       collection: 'brand',
       via: 'itemCodeId'
     }

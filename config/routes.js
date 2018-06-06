@@ -57,12 +57,29 @@ module.exports.routes = {
     fn: (req, res) => {
       try {
         const modelName = req.params.model;
-        if(sails.models[modelName]){
-          return res.send({"data" : Object.keys(sails.models[modelName].attributes)});
+        const getAttributes = (model) => {
+            if (sails.models[model]) {
+                let attributes = Object.keys(sails.models[model].attributes);
+                attributes.forEach((item) => {
+                    const childAttributes = getAttributes(item);
+                    if (childAttributes) {
+                        attributes = _.union(attributes, childAttributes);
+                    }
+                });
+                return attributes;
+            }
+            else{
+                return null;
+            }
+        }
+
+        const output = getAttributes(modelName);
+        if(output){
+          return res.send({"data" : output});
         }
         else{
           return res.send ({"data" : [], "message" : "No models found"});
-        }   
+        }
       } catch (error) {
         res.send(error);
       }   
