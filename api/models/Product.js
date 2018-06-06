@@ -61,10 +61,12 @@ module.exports = {
       model:"brand",
       required: true
     },
+    /*
     brand: {
       collection: 'product',
       via: 'product'
     }  
+    */
 
   },
 

@@ -16,7 +16,7 @@ module.exports = {
     },
     product: {
       collection: 'product',
-      via: 'brand'
+      via: 'brandId'
     },
     itemCodeId: {
       model: 'itemcode'
