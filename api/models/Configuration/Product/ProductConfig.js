@@ -1,5 +1,5 @@
 /**
- * ItemCode.js
+ * Configuration/Product/ProductConfig.js
  *
  * @description :: A model definition.  Represents a database table/collection/etc.
  * @docs        :: https://sailsjs.com/docs/concepts/models-and-orm/models
@@ -8,22 +8,18 @@
 module.exports = {
 
   attributes: {
-
-    name: {
-      type: 'string',
-      unique: true,
+    productDetailsId: {
+      model: 'productdetails',
       required: true
-    },
-    plantId:{
-      model:"plant",
-      required: true
-    },
-    brand: {
-      collection: 'brand',
-      via: 'itemCodeId'
-    }
+    } 
 
   },
 
 };
 
+/*
+Validation before add-
+
+-> productDetailsId & Company ID can't be duplicate.
+
+*/
