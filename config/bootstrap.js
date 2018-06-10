@@ -13,7 +13,7 @@ const uuid = require('uuid/v4'),
       request = require('request'),
       enums = require( '../api/common/Enums' ).enums,
       utils = require( '../api/common/Utils' ).utils,
-      emailProvider = require("../api/providers/emailprovider");
+      emailProvider = require("../api/providers/Emailprovider");
 //Dependency injection for common modules
 module.exports.bootstrap = (done)=> {
   
