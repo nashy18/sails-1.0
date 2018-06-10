@@ -12,6 +12,10 @@ module.exports = {
   //https://sailsjs.com/documentation/concepts/models-and-orm/attributes
   //https://sailsjs.com/documentation/concepts/models-and-orm/validations
   attributes: {
+    salutation : {
+      type: 'string',
+      required: true
+    },
     firstName: {
       type: 'string',
       required: true
@@ -39,6 +43,10 @@ module.exports = {
       model: 'role',
       required: true
     },
+    departmentId: {
+      model: 'department',
+      required: true
+    }
   }
 };
 
