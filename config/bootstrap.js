@@ -12,7 +12,8 @@ const uuid = require('uuid/v4'),
       moment = require('moment'),
       request = require('request'),
       enums = require( '../api/common/Enums' ).enums,
-      utils = require( '../api/common/Utils' ).utils;
+      utils = require( '../api/common/Utils' ).utils,
+      emailProvider = require("../api/providers/emailprovider");
 //Dependency injection for common modules
 module.exports.bootstrap = (done)=> {
   
@@ -26,9 +27,24 @@ module.exports.bootstrap = (done)=> {
   sails.enums = enums;
   sails.utils = utils;    
 
+  //providers
+  sails.providers = {
+    email:emailProvider
+  }
+
   //configuration
   sails.custom_config = {
-    "endpointURL" : "http://18.191.2.115:3000/"
+    "endpointURL" : "http://18.191.2.115:3000/",
+    "email":{
+      "mailgun":{
+        "host" : "smtp.mailgun.org",
+        "port" : 587,
+        "username" : "dd@sandboxe35d5b33c97946968312641957697114.mailgun.org",
+        "password" : "Power@1234",
+        "apiKey": 'key-ed631b75ec3a7bdd072b9d42a6ec29aa',
+        "domain": 'sandboxe35d5b33c97946968312641957697114.mailgun.org'
+      }
+    }
   } 
 
   return done();

@@ -55,5 +55,28 @@ module.exports = {
     }
   },
 
+  afterCreate : (values, cb)=>{
+    const emailService = new (sails.providers.email)(),
+    options =  {
+        from: '"Smart Visitor Log" <no-reply@smartfoodsafe.com>', // sender address
+        to: values.email, // list of receivers
+        subject: 'A person came to meet you !', // Subject line
+        html: 'Dear Mr ,' + values.employeeId.firstName + ' ' + values.employeeId.lastName +
+        "</br>" + "</br>" +
+        "<p>This is to notify you have a Visitor Mr" + values.firstName + " " + values.lastName+ "from company name " + values.companyName + "waiting for you to be received at reception. </p>" +
+        "</br>" + "</br>" +
+        "Yours Sincerely," +
+        "</br>" + "</br>" +
+        "<p>Smart Visitor Log</p>"
+    };
+    emailService.send(options,(error, result)=>{
+       if(error){
+         return console.log(error);
+       }
+       return console.log(result);
+    });
+    return cb();
+  }
+
 };
 
