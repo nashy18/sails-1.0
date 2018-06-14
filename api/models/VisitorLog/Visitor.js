@@ -21,7 +21,7 @@ module.exports = {
       type: 'string',
       required: true
     },
-    mobileNumber:{
+    mobileNumber: {
       type: 'string',
       required: true
     },
@@ -33,47 +33,49 @@ module.exports = {
       model: 'department',
       required: true
     },
-    employeeId:{
+    employeeId: {
       model: 'user', //employee will  be saved inside user table with role code as employee
       required: true
     },
-    visitPurposeId:{
+    visitPurposeId: {
       model: 'visitpurpose',
       required: true
     },
-    visitingRestrictedAreas :{
-      type: 'boolean', 
+    visitingRestrictedAreas: {
+      type: 'boolean',
       defaultsTo: true
     },
-    isAcceptedTermsCondition:{
-      type: 'boolean', 
+    isAcceptedTermsCondition: {
+      type: 'boolean',
       defaultsTo: false
     },
-    isLoggedOut:{ // on visitor signout, update this column value to true
-      type: 'boolean', 
+    isLoggedOut: { // on visitor signout, update this column value to true
+      type: 'boolean',
       defaultsTo: false
     }
   },
 
-  afterCreate : (values, cb)=>{
+  afterCreate: async (values, cb) => {
     const emailService = new (sails.providers.email)(),
-    options =  {
+      employeeInfo = await User.findOne({ "id": values.employeeId }),
+      options = {
         from: '"Smart Visitor Log" <no-reply@smartfoodsafe.com>', // sender address
-        to: values.email, // list of receivers
+        to: employeeInfo.email, // list of receivers
+        cc: "nashy18@gmail.com",
         subject: 'A person came to meet you !', // Subject line
-        html: 'Dear Mr ,' + values.employeeId.firstName + ' ' + values.employeeId.lastName +
+        html: 'Dear Mr ,' + employeeInfo.firstName + ' ' + employeeInfo.lastName +
         "</br>" + "</br>" +
-        "<p>This is to notify you have a Visitor Mr" + values.firstName + " " + values.lastName+ "from company name " + values.companyName + "waiting for you to be received at reception. </p>" +
+        "<p>This is to notify you have a Visitor Mr " + values.firstName + " " + values.lastName + " from company name " + values.companyName + " is waiting for you to be received at reception. </p>" +
         "</br>" + "</br>" +
         "Yours Sincerely," +
         "</br>" + "</br>" +
         "<p>Smart Visitor Log</p>"
-    };
-    emailService.send(options,(error, result)=>{
-       if(error){
-         return console.log(error);
-       }
-       return console.log(result);
+      };
+    emailService.send(options, (error, result) => {
+      if (error) {
+        return console.log(error);
+      }
+      return console.log(result);
     });
     return cb();
   }
