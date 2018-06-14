@@ -63,7 +63,7 @@ module.exports = {
         to: employeeInfo.email, // list of receivers
         cc: "nashy18@gmail.com",
         subject: 'A person came to meet you !', // Subject line
-        html: 'Dear Mr ,' + employeeInfo.firstName + ' ' + employeeInfo.lastName +
+        html: 'Dear Mr ,' + "</br>" + "</br>" + employeeInfo.firstName + ' ' + employeeInfo.lastName +
         "</br>" + "</br>" +
         "<p>This is to notify you have a Visitor Mr " + values.firstName + " " + values.lastName + " from company name " + values.companyName + " is waiting for you to be received at reception. </p>" +
         "</br>" + "</br>" +
