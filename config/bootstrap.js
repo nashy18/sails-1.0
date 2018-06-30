@@ -32,7 +32,7 @@ module.exports.bootstrap = (done)=> {
     email:emailProvider
   }
 
-  sails.config.port = sails.appConfig.tenantConfig[sails.tenant].port;
+  sails.config.port = process.env.PORT  || sails.appConfig.tenantConfig[sails.tenant].port;
   return done();
 
 };
