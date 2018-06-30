@@ -34,6 +34,7 @@ module.exports.http = {
     //   'session',
     //   'bodyParser',
     //   'compress',
+    //   "switchDb",
     //   'poweredBy',
     //   'router',
     //   'www',
@@ -55,7 +56,13 @@ module.exports.http = {
     //   return middlewareFn;
     // })(),
 
-  },
-  trustProxy:true
+    /*
+    switchDb : (req,res,next)=>{
+      return next();
+    }
+    */
 
+  },
+  trustProxy:true,
+  cache: 365.25 * 24 * 60 * 60 * 1000, // One year
 };
