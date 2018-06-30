@@ -78,5 +78,10 @@ module.exports.sockets = {
 
   // grant3rdPartyCookie: true,
 
+  onlyAllowOrigins: [
+    "http://localhost:4200",
+    "http://18.191.2.115:3000/",
+    "http://ionic-3-demo.herokuapp.com"
+  ],
 
 };
