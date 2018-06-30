@@ -15,7 +15,7 @@ const createRecord= async (req, res)=> {
       
       const modelName = req.options.model,
             createdData = await modelInstance.create(req.body).fetch();
-      return res.ok({message:"A new " + modelName + " data created successfully", data: createdData, success:true});
+      return res.ok({message: sails.__('API_Create', modelName), data: createdData, success:true});
     } catch (error) {
       return res.serverError({message : error.message, success:false});
     }

@@ -20,7 +20,7 @@ const findOneRecord = async (req, res) => {
 
         if (_.isEmpty(getSingleRecord)) return res.ok({ message: modelName + "  details not found", data: null, success: false });
 
-        return res.ok({ message: modelName + " details retrieved successfully", data: getSingleRecord, success: true });
+        return res.ok({ message: sails.__('API_Read_Single', modelName), data: getSingleRecord, success: true });
 
     } catch (error) {
         return res.serverError({ message: error.message, success: false });

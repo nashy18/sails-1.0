@@ -17,7 +17,7 @@ const updateOneRecord = async (req, res) => {
         .fetch();
     if (_.isEmpty(updatedData)) return res.serverError({ message: modelName + " with Id=" + req.params.id + " not exists", success: false });
 
-    return res.ok({ message: modelName + " with Id=" + req.params.id + " updated successfully", data: updatedData, success: true });
+    return res.ok({ message:sails.__('API_Update', modelName, req.params.id), data: updatedData, success: true });
   } catch (error) {
     return res.serverError({ message: error.message, success: false });
   }

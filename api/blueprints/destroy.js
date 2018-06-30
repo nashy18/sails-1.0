@@ -18,7 +18,7 @@ const destroyOneRecord = async (req, res) => {
         .fetch();
     if (_.isEmpty(deletedData)) return res.serverError({ message: modelName + " with Id=" + req.params.id + " not exists", success: false });
 
-    return res.ok({ message: "A " + modelName + " data deleted successfully", data: deletedData, success: true });
+    return res.ok({ message: sails.__('API_Delete', modelName), data: deletedData, success: true });
   } catch (error) {
     return res.serverError({ message: error.message, success: false });
   }

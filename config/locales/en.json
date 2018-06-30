@@ -1,5 +1,10 @@
 {
 	"Welcome": "Welcome",
 	"A brand new app.": "A brand new app.",
-	"Smart Food Safe - API": "Smart Food Safe - API"
+	"Smart Food Safe - API": "Smart Food Safe - API",
+	"API_Create" :"A new %s data created successfully",
+	"API_Update" :"An existing %s with Id= %s updated successfully",
+	"API_Delete" :"A %s data created successfully",
+	"API_Read" :"%s records retrieved successfully",
+	"API_Read_Single" :"%s details retrieved successfully"
 }

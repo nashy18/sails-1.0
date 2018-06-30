@@ -38,7 +38,7 @@ const findRecords = async (req, res) => {
 
         if (_.isEmpty(getRecords)) return res.ok({ message: modelName + "  records not found", data: null, success: false });
 
-        return res.ok({ message: modelName + " records retrieved successfully", data: getRecords, success: true });
+        return res.ok({ message: sails.__('API_Read', modelName), data: getRecords, success: true });
 
     } catch (error) {
         return res.serverError({ message: error.message, success: false });
