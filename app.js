@@ -49,6 +49,61 @@ try {
   return;
 }//-•
 
+//This function will intiallise custom logic for setting up environment & tenant specific configuration
+const customConfiguration = () => {
+  //assigning app configuration based on environment
+
+  const cliArgs = process.argv.slice(2),
+    key = (cliArgs.length > 0) ? cliArgs[0] : null;
+  let env = null;
+  switch (key) {
+    case "testing":
+    case "test":
+    case "tst":
+    case "t":
+      env = "testing";
+      break;
+    case "production":
+    case "prod":
+    case "prd":
+    case "p":
+      env = "production";
+      break;
+    case "stg":
+    case "stag":
+    case "staging":
+    case "s":
+      env = "staging";
+      break;
+    case "dev":
+    case "development":
+    case "d":
+    default:
+      env = "development";
+      break;
+  }
+
+  const tenant = (cliArgs.length == 2) ? cliArgs[1] : "default";
+  const appConfig = require("./config/custom/" + env)[env];
+
+  //Validating tenant configuration exist or not
+  if (!appConfig.tenantConfig[tenant]) {
+    return console.error('\x1b[31m%s\x1b[0m', "Tenant configuration with value " + tenant + " not exits!");
+  }
+
+  //attaching global properties to sails object
+  sails.appConfig = appConfig;
+  sails.tenant = tenant;
+  sails.appEnvironment = env;
+  //It will be used to assign db connection string
+  process.dbEndpoint = sails.appConfig.tenantConfig[sails.tenant].dbEndpoint;
+
+  console.info("--------------------------------------------------------\n");
+  console.info('\x1b[32m%s\x1b[0m', "Port: " + sails.appConfig.tenantConfig[sails.tenant].port + "\nEnvironment: " + env.toUpperCase() + "\nTenant: " + sails.tenant.toUpperCase() + "\n");
+  console.info("----------------Application starting--------------------");
+}
+
+customConfiguration();
 
 // Start server
 sails.lift(rc('sails'));

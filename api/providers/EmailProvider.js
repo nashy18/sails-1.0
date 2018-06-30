@@ -5,7 +5,7 @@ const nodemailer = require('nodemailer'),
 
 class EmailProvider {
   constructor(config){
-    this.config = config || sails.custom_config.email.mailgun;
+    this.config = config || sails.appConfig.email.mailgun;
   }
 
   send(input, callback){    

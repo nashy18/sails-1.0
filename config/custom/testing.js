@@ -1,4 +1,5 @@
-﻿module.exports.development = {
+﻿module.exports.testing = {
+
     endpointURL : "http://18.191.2.115:3000/",
     email:{
       mailgun:{
@@ -10,5 +11,5 @@
         "domain": 'sandboxe35d5b33c97946968312641957697114.mailgun.org'
       }
     },
-    tenantConfig: require("../../tenant/development.json")
-}
+    tenantConfig: require("../../tenant/testing.json")
+};

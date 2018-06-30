@@ -13,7 +13,7 @@ class UserController {
     authenticate(args) {
         try {
             const request = sails.request,
-              url = sails.custom_config.endpointURL + "user/login";
+              url = sails.appConfig.endpointURL + "user/login";
             request.post({body: args, url: url, json: true }, (error, response, body) => {
               this.res.send(body);
             });
